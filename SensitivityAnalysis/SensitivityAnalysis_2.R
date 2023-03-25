@@ -1,4 +1,4 @@
-## estimation of mean of antibody level using mixture model assuming SIW
+### Estimation of mean of antibody level using mixture model assuming SIW ###
 rm(list=ls(all=TRUE))
 library(tidyverse)
 library(rstan)
@@ -207,7 +207,7 @@ ggmcmc(ggs(fit, inc_warmup=TRUE, stan_include_auxiliar=TRUE),
 ggmcmc(ggs(fit), file='fit-ggmcmc.pdf')
 
 
-# plot of observed and predicted antibody levels
+# plot of observed and predicted antibody levels 
 data.frame.quantile.mcmc <- function(x, y_mcmc, probs=c(2.5, 25, 50, 75, 97.5)/100) {
   qua <- apply(y_mcmc, 2, quantile, probs=probs)
   d <- data.frame(X=x, t(qua))

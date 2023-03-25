@@ -1,4 +1,4 @@
-# estimation of FoIs using seroepidemiological studies (ELISA/F/N/Neutr/CF)
+### Estimation of FoIs using seroepidemiological studies (ELISA/F/N/Neutr/CF) ###
 rm(list=ls(all=TRUE))
 library(tidyverse)
 library(rstan)
@@ -338,7 +338,7 @@ ggmcmc(ggs(fit), file='fit-ggmcmc.pdf')
 
 ms <- rstan::extract(fit)
 
-# scatter plot of FoIs and decay (Nyiro)
+# scatter plot of FoIs and decay (Nyiro) (Figure S3)
 d <- data.frame(foi1=ms$foi1_Nyiro, foi2=ms$foi2_Nyiro, foi3=ms$foi3_Nyiro, decay=ms$decay)
 N_col <- ncol(d)
 ggp <- ggpairs(d, upper='blank', diag='blank', lower='blank')
@@ -402,7 +402,7 @@ data.frame.quantile.mcmc <- function(x, y_mcmc, probs=c(2.5, 50, 97.5)/100) {
   return(d)
 }
 
-# plot of observed seropositivity and prediction (ELISA)
+# plot of observed seropositivity and prediction (ELISA) (Figure 2A)
 N_mcmc <- length(ms$lp__)
 N_X <- length(X_new)
 X_new <- 1:80
@@ -473,7 +473,7 @@ p <- ggplot(d_Nyiro, aes(x = ageMid, y = p50)) +
   theme_classic()
 p
 
-# plot of observed seropositivity and prediction (F)
+# plot of observed seropositivity and prediction (F) (Figure 2B)
 X_new_f <- 1:90
 N_X_f <- length(X_new_f)
 
@@ -506,7 +506,7 @@ p_F <- ggplot(d_Sastre, aes(x = ageMid, y = p50)) +
   theme_classic()
 p_F
 
-# plot of observed seropositivity and prediction (N)
+# plot of observed seropositivity and prediction (N) (Figure 2C)
 q_Lu_mcmc <- as.data.frame(matrix(nrow=N_mcmc, ncol=N_X))
 for (i in 1:N_X) 
   if(X_new[i] < 1){
@@ -538,7 +538,7 @@ p_N
 p + p_F + p_N
 
 
-# plot of observed seropositivity and prediction (Neutralization)
+# plot of observed seropositivity and prediction (Neutralization) (Figure S2A)
 N_mcmc <- length(ms$lp__)
 X_new <- 1:80
 N_X <- length(X_new)
@@ -571,7 +571,7 @@ p_Neu <- ggplot(d_Leo, aes(x = ageMid, y = p50)) +
   theme_classic()
 p_Neu
 
-# plot of observed seropositivity and prediction (CF)
+# plot of observed seropositivity and prediction (CF) (Figure S2B)
 q_Jen_mcmc <- as.data.frame(matrix(nrow=N_mcmc, ncol=N_X))
 q_Mos_mcmc <- as.data.frame(matrix(nrow=N_mcmc, ncol=N_X))
 q_Gol_mcmc <- as.data.frame(matrix(nrow=N_mcmc, ncol=N_X))
@@ -659,7 +659,7 @@ p_CF
 
 p_Neu + p_CF
 
-##plot of mcmc samples (foi1 of ELISA)
+##plot of mcmc samples (foi1 of ELISA) (Figure 3A)
 N_mcmc <- length(ms$lp__)
 d_est <- data.frame(1:N_mcmc, ms$foi1_Nyiro, ms$foi1_Aran, ms$foi1_Zhang)
 colnames(d_est) <- c('mcmc', paste0('foi1', 1:3))
@@ -686,7 +686,7 @@ p_1 <- ggplot() +
   theme_classic()
 p_1 
 
-##plot of mcmc samples (foi2 of ELISA)
+##plot of mcmc samples (foi2 of ELISA) (Figure 3B)
 d_est <- data.frame(1:N_mcmc, ms$foi2_Nyiro, ms$foi2_Aran, ms$foi2_Zhang)
 colnames(d_est) <- c('mcmc', paste0('foi2', 1:3))
 
@@ -714,7 +714,7 @@ p_2 <- ggplot() +
 p_2 
 
 
-##plot of mcmc samples (foi3 of ELISA)
+##plot of mcmc samples (foi3 of ELISA) (Figure 3C)
 d_est <- data.frame(1:N_mcmc, ms$foi3_Nyiro, ms$foi3_Aran, ms$foi3_Zhang)
 colnames(d_est) <- c('mcmc', paste0('foi3', 1:3))
 

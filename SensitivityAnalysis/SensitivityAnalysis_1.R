@@ -1,4 +1,5 @@
-# estimation of foi (ELISA/F/N/Neutr/CF) using non-informative prior
+### Estimation of foi (ELISA/F/N/Neutr/CF) using non-informative prior ###
+
 rm(list=ls(all=TRUE))
 library(tidyverse)
 library(rstan)
